@@ -8,19 +8,20 @@ class BinaryClassifier(nn.Module):
         
         super(BinaryClassifier, self).__init__()
 
-        # define any initial layers, here
         # defining 2 linear layers
         self.fc1 = nn.Linear(input_dim, hidden_dim)
         self.fc2 = nn.Linear(hidden_dim, output_dim)
+        # dropout layer
         self.drop = nn.Dropout(0.3)
         # sigmoid layer
         self.sig = nn.Sigmoid()
         
     def forward(self, x):
        
-        out = F.relu(self.fc1(x)) # activation on hidden layer
+        # activation function on hidden layer
+        out = F.relu(self.fc1(x)) 
         out = self.drop(out)
         out = self.fc2(out)
-        return self.sig(out) # returning class score
+        # returning class score
+        return self.sig(out) 
         
-        return x
